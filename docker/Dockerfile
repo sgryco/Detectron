@@ -25,4 +25,6 @@ WORKDIR /detectron
 RUN make
 
 # [Optional] Build custom ops
-RUN make ops
+RUN sed -i 's/\.dim/\.ndim/' detectron/ops/zero_even_op.cc &&\
+ sed -i 's/numel/size/' detectron/ops/zero_even_op.cc &&\
+ make ops
